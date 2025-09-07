@@ -1,6 +1,24 @@
 steps:
+  # Build the Docker image and push to artifcat registry
   - name: "gcr.io/cloud-builders/docker"
     args: ["build", "-t", "gcr.io/$PROJECT_ID/demo-app", "."]
+
+  # Deploy the built container to Google Cloud Run
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      [
+        "run",
+        "deploy",
+        "demo-app",
+        "--image",
+        "gcr.io/$PROJECT_ID/demo-app",
+        "--region",
+        "europe-west9",
+        "--platform",
+        "managed",
+      ]
+
 images:
   - "gcr.io/$PROJECT_ID/demo-app"
 options:
