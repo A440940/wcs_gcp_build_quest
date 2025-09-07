@@ -5,6 +5,8 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-COPY simple_script.py .
+COPY simple_server.py .
+
+RUN pip install flask
 
 CMD ["python", "simple_script.py"] 
