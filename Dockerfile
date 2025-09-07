@@ -9,4 +9,4 @@ COPY simple_server.py .
 
 RUN pip install flask
 
-CMD ["python", "simple_script.py"] 
+CMD ["python", "simple_server.py"]
